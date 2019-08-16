@@ -17,17 +17,63 @@ function onStart() {
 onStart();
 
 function drawMapItems() {
-    console.log(siteLocations.find(object => object.engNum === "J1488"))
+    //console.log(siteLocations.find(object => object.engNum === "J1488"))
+    let min = 1000;
+    let max = 0;
+    let third = 0;
+    let twoThird = 0;
+    for (let i = 0; i < 100; i++) {
+        if (siteLocations[i].latitude == null || siteLocations[i].longitude == null || siteLocations[i].engNum == null) {
+            continue
+        }
+
+        let costObj = siteCosts.find(object => object.eng === siteLocations[i].engNum)
+        if (costObj == null) {
+            continue
+        }
+        
+        let value = costObj.Aug
+        if (min > value) {
+            min = value
+        }
+
+        if (max < value) {
+            max = value
+        }
+    }
+
+    third = ((max - min) / 3) + min
+    twoThird = third + ((max - min) / 3)
+    console.log(min)
+    console.log(max)
+    console.log(third)
+    console.log(twoThird)
 
     for (let i = 0; i < 100; i++) {
         if (siteLocations[i].latitude == null || siteLocations[i].longitude == null || siteLocations[i].engNum == null) {
             continue
         }
 
+        let costObj = siteCosts.find(object => object.eng === siteLocations[i].engNum)
+        if (costObj == null) {
+            continue
+        }
+        let colour;
+        if (costObj.Aug > twoThird) {
+            colour = "red"
+        }
+        else if (costObj.Aug > third) {
+            colour = "yellow"
+        }
+        else {
+            colour = "green"
+        }
+
         sitesData.push({
             lat: siteLocations[i].latitude,
             long: siteLocations[i].longitude,
-            eng: siteLocations[i].engNum
+            eng: siteLocations[i].engNum,
+            type: colour
         })
     }
 
@@ -35,9 +81,23 @@ function drawMapItems() {
 }
 
 function addMarker(markerList) {
+
+    // var tooltip = $('.leaflet-tooltip');
+    // tooltip.css('font-size', 44);
+
     markerList.forEach(item => {
         var marker = L.marker([item.lat, item.long]).addTo(mymap);
-        marker.bindTooltip(item.eng, {permanent: true}).openTooltip();
+
+        if (item.type == "red") {
+            marker.bindTooltip(item.eng, {className: 'redToolTip', permanent: true}).openTooltip();
+        }
+        else if (item.type == "yellow") {
+            marker.bindTooltip(item.eng, {className: 'yellowToolTip', permanent: true}).openTooltip();
+        }
+        else {
+            marker.bindTooltip(item.eng, {className: 'greenToolTip', permanent: true}).openTooltip();
+        }
+        
     });
 }
 

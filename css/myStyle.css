@@ -1,0 +1,38 @@
+.greenToolTip {
+    background: green;
+    border: 2px solid green
+}
+
+.redToolTip {
+    background: red;
+    border: 2px solid red
+}
+
+.yellowToolTip {
+    background: yellow;
+    border: 2px solid yellow
+}
+
+.leaflet-tooltip-left.greenToolTip::before {
+    border-left-color: green;
+}
+
+.leaflet-tooltip-right.greenToolTip::before {
+    border-right-color: green;
+}
+
+.leaflet-tooltip-left.redToolTip::before {
+    border-left-color: red;
+}
+
+.leaflet-tooltip-right.redToolTip::before {
+    border-right-color: red;
+}
+
+.leaflet-tooltip-left.yellowToolTip::before {
+    border-left-color: yellow;
+}
+
+.leaflet-tooltip-right.yellowToolTip::before {
+    border-right-color: yellow;
+}

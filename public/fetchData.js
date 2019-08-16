@@ -1,4 +1,5 @@
 var siteLocations;
+var siteCosts;
 
 var HttpClient = function () {
     this.get = function (aUrl, aCallback) {
@@ -22,7 +23,19 @@ function fetchData() {
 
         console.log("Done fetching site location data");
         console.log(siteLocations.find(object => object.engNum === "J1547"))
-        drawMapItems();
-    })   
+        //drawMapItems();
+
+        client.get('http://localhost:3000/cost', function (response) {
+            responseArray = JSON.parse(response)
+            siteCosts = responseArray;
+
+            console.log("Done fetching site cost data");
+            console.log(siteCosts.find(object => object.eng === "J1447"))
+            //console.log(siteCosts)
+            drawMapItems();
+        }
+        )
+    })
+
 }
 
