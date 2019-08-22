@@ -32,7 +32,7 @@ function fetchData() {
             console.log("Done fetching site cost data");
             console.log(siteCosts.find(object => object.eng === "J1447"))
             //console.log(siteCosts)
-            drawMapItems();
+            //drawMapItems();
         }
         )
     })

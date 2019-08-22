@@ -13,6 +13,11 @@
     border: 2px solid yellow
 }
 
+.blackToolTip {
+    background: black;
+    border: 2px solid black
+}
+
 .leaflet-tooltip-left.greenToolTip::before {
     border-left-color: green;
 }
@@ -36,3 +41,33 @@
 .leaflet-tooltip-right.yellowToolTip::before {
     border-right-color: yellow;
 }
+
+.leaflet-tooltip-left.blackToolTip::before {
+    border-left-color: black;
+}
+
+.leaflet-tooltip-right.blackToolTip::before {
+    border-right-color: black;
+}
+
+.btn {
+    width: 50px;
+    margin: 10px;
+}
+
+.form-inline{
+    display: inline-block;
+    width: auto;
+}
+
+label {
+    /* Other styling... */
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+}
+
+input{
+    width: 50%!important;
+    }
